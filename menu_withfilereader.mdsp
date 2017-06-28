@@ -1,7 +1,7 @@
 [Project]
 name=menu_withfilereader
 type=0
-defaultConfig=0
+defaultConfig=1
 
 [Debug]
 // compiler 
@@ -18,11 +18,11 @@ allWarning=1
 extraWarning=0
 isoWarning=0
 warningsAsErrors=0
-debugType=1
-debugLevel=2
+debugType=0
+debugLevel=1
 exceptionEnabled=1
 runtimeTypeEnabled=1
-optimizeLevel=0
+optimizeLevel=3
 
 // linker
 libraryPath=
@@ -57,10 +57,10 @@ extraWarning=0
 isoWarning=0
 warningsAsErrors=0
 debugType=0
-debugLevel=0
+debugLevel=1
 exceptionEnabled=1
-runtimeTypeEnabled=1
-optimizeLevel=2
+runtimeTypeEnabled=0
+optimizeLevel=3
 
 // linker
 libraryPath=
@@ -69,7 +69,7 @@ libraries=
 extraLinkerOptions=
 ignoreStartupFile=0
 ignoreDefaultLibs=0
-stripExecutableFile=1
+stripExecutableFile=0
 
 // archive
 extraArchiveOptions=
@@ -80,11 +80,9 @@ resourceIncludeDirectory=
 extraResourceOptions=
 
 [Source]
-
+1=source.c
 [Header]
-
 [Resource]
-
 [Other]
-
 [History]
+source.c,1267

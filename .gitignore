@@ -45,7 +45,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-*.exe
 Debug/source.o
 Debug/menu_withfilereader.exe
 Debug/menu_withfilereader.exe
