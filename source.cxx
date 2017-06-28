@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
+#define BUFFER_SIZE 100
+
 void mostrarOpcoesMenu()
 {
 	printf("%s\n","MENU");
@@ -42,20 +44,26 @@ void pedirNomeFicheiro(char * buffer)
 	printf("%s","Nome do ficheiro: ");
 	scanf("%s",buffer);
 }
-int main()
+void lerFicheiro(char * buffer)
 {
-	char buffer[100];
-	mostrarOpcoesMenu();
 	pedirNomeFicheiro(buffer);
-	
 	if(strlen(buffer))
 	{
 		FILE *fp = fopen(buffer,"r");
-		pedirOpcoes(fp, (char*) buffer);
+		pedirOpcoes(fp,buffer);
 		fclose(fp);
 	}
+}
+int main()
+{
+	char buffer[BUFFER_SIZE];
 	
-	pedirOpcoes(stdin, (char*) buffer);
+	mostrarOpcoesMenu();
+	
+	lerFicheiro(buffer);
+	
+	pedirOpcoes(stdin,buffer);
+	
 	return EXIT_SUCCESS;
 }
 
