@@ -5,6 +5,7 @@
 #define BUFFER_SIZE 100
 #define STRING "%s"
 #define READ "r"
+#define MIN_CHARACTERS_FILENAME 2
 
 void mostrarOpcoesMenu()
 {
@@ -20,22 +21,22 @@ void selecionarOpcaoMenu(int opcao)
 	switch(opcao)
 	{
 		case 1: 
-			printf(STRING,"escolheste a 1!!\n");
+			printf(STRING,"<opcao1> escolhida.\n");
 			//
 			break;
 		case 2:
-			printf(STRING,"escolheste a 2!!\n");
+			printf(STRING,"<opcao2> escolhida.\n");
 			//
 			break;
 		case 3:
-			printf(STRING,"escolheste a 3!!\n");
+			printf(STRING,"<opcao3> escolhida.\n");
 			//
 			break;
 		case 0:
 			exit(0);
 			break;
 		default:
-			printf(STRING,"escolheste uma opcao invalida!!\n");
+			printf(STRING,"opcao invalida.\n");
 			break;
 	}
 }
@@ -56,12 +57,13 @@ void pedirOpcoesUtilizador(char * buffer)
 void pedirNomeFicheiro(char * buffer)
 {
 	printf(STRING,"Nome do ficheiro: ");
-	scanf(STRING,buffer);
+	fflush(stdin);
+	printf(STRING,fgets(buffer,sizeof(buffer),stdin));
 }
 void lerFicheiro(char * buffer)
 {
 	pedirNomeFicheiro(buffer);
-	if(strlen(buffer))
+	if(strlen(buffer) >= MIN_CHARACTERS_FILENAME)
 	{
 		printf(STRING,"\n\n@@A carregar o ficheiro...@@\n");
 		FILE *fp = fopen(buffer,READ);
