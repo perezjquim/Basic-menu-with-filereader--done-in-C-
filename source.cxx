@@ -3,32 +3,39 @@
 #include <string.h>
 
 #define BUFFER_SIZE 100
+#define STRING "%s"
+#define READ "r"
 
 void mostrarOpcoesMenu()
 {
-	printf("%s\n","MENU");
-	printf("%s\n","1) (opcao1)");
-	printf("%s\n","2) (opcao2)");
-	printf("%s\n","3) (opcao3)");	
+	printf(STRING,"@@@MENU@@@\n");
+	printf(STRING,"1) <opcao1>\n");
+	printf(STRING,"2) <opcao2>\n");
+	printf(STRING,"3) <opcao3>\n");
+	printf(STRING,"0) Sair\n");
+	printf(STRING,"@@@@@@@@@@\n\n");
 }
 void selecionarOpcaoMenu(int opcao)
 {
 	switch(opcao)
 	{
 		case 1: 
-			printf("%s\n","escolheste a 1!!");
+			printf(STRING,"escolheste a 1!!\n");
 			//
 			break;
 		case 2:
-			printf("%s\n","escolheste a 2!!");
+			printf(STRING,"escolheste a 2!!\n");
 			//
 			break;
 		case 3:
-			printf("%s\n","escolheste a 3!!");
+			printf(STRING,"escolheste a 3!!\n");
 			//
 			break;
+		case 0:
+			exit(0);
+			break;
 		default:
-			printf("%s\n","escolheste uma opcao invalida!!");
+			printf(STRING,"escolheste uma opcao invalida!!\n");
 			break;
 	}
 }
@@ -39,19 +46,35 @@ void pedirOpcoes(FILE * stream, char * buffer)
 		selecionarOpcaoMenu(atoi(buffer));
 	}
 }
+void pedirOpcoesUtilizador(char * buffer)
+{
+	mostrarOpcoesMenu();
+	printf(STRING,"@@Escolha uma opcao@@\n");
+	fflush(stdin);
+	pedirOpcoes(stdin,buffer);
+}
 void pedirNomeFicheiro(char * buffer)
 {
-	printf("%s","Nome do ficheiro: ");
-	scanf("%s",buffer);
+	printf(STRING,"Nome do ficheiro: ");
+	scanf(STRING,buffer);
 }
 void lerFicheiro(char * buffer)
 {
 	pedirNomeFicheiro(buffer);
 	if(strlen(buffer))
 	{
-		FILE *fp = fopen(buffer,"r");
+		printf(STRING,"\n\n@@A carregar o ficheiro...@@\n");
+		FILE *fp = fopen(buffer,READ);
+		
+		if(!fp)
+		{	
+			printf(STRING,"@@Erro ao carregar o ficheiro.@@\n\n");
+			return;
+		}
+		
 		pedirOpcoes(fp,buffer);
 		fclose(fp);
+		printf(STRING,"@@Carregamento do ficheiro concluido.\n\n");
 	}
 }
 int main()
@@ -62,8 +85,8 @@ int main()
 	
 	lerFicheiro(buffer);
 	
-	pedirOpcoes(stdin,buffer);
+	pedirOpcoesUtilizador(buffer);
 	
-	return EXIT_SUCCESS;
+	return 0;
 }
 
