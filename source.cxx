@@ -8,7 +8,7 @@
 #define MIN_CHARACTERS_FILENAME 2
 
 /* Mostra o menu e as suas opções */
-void mostrarOpcoesMenu()
+void mostrarOpcoes()
 {
 	// Display do menu e das suas opções
 	printf(STRING,"@@@MENU@@@\n");
@@ -20,7 +20,7 @@ void mostrarOpcoesMenu()
 }
 
 /* Selecciona uma dada opção (e executa a sua respetiva ação) */
-void selecionarOpcaoMenu(int opcao)
+void executarOpcao(int opcao)
 {
 	// Escolha da dada opção conforme o input
 	switch(opcao)
@@ -62,8 +62,8 @@ void pedirOpcoes(FILE * stream, char * buffer)
 	// (infinitamente, no caso do utilizador; finitamente, no caso da leitura no ficheiro)
 	while(fgets(buffer,BUFFER_SIZE,stream))
 	{
-		selecionarOpcaoMenu(atoi(buffer)); 			// A dada opção é seleccionada
-		mostrarOpcoesMenu();						// São mostradas novamente as opções
+		executarOpcao(atoi(buffer)); 			// A dada opção é seleccionada
+		mostrarOpcoes();						// São mostradas novamente as opções
 		printf(STRING,"@@Escolha uma opcao@@\n");	// É exposta uma mensagem a pedir uma opção
 	}
 }
@@ -71,7 +71,7 @@ void pedirOpcoes(FILE * stream, char * buffer)
 /* Serve para pedir um conjunto (infinito) de opções por parte do utilizador */
 void pedirOpcoesUtilizador(char * buffer)
 {
-	mostrarOpcoesMenu();							// São mostradas as opções
+	mostrarOpcoes();							// São mostradas as opções
 	printf(STRING,"@@Escolha uma opcao@@\n");		// É exposta uma mensagem a pedir uma opção
 	fflush(stdin);									// 
 	pedirOpcoes(stdin,buffer);						// É pedido (infinitamente) a escolha de uma opção
