@@ -30,30 +30,32 @@ void selecionarOpcaoMenu(int opcao)
 			break;
 	}
 }
-void pedirOpcoes(FILE * stream)
+void pedirOpcoes(FILE * stream, char * buffer)
 {
-	char buffer[100];
 	while(fgets(buffer,sizeof(buffer),stream))
 	{
 		selecionarOpcaoMenu(atoi(buffer));
 	}
 }
+void pedirNomeFicheiro(char * buffer)
+{
+	printf("%s","Nome do ficheiro: ");
+	scanf("%s",buffer);
+}
 int main()
 {
 	char buffer[100];
 	mostrarOpcoesMenu();
-	
-	printf("%s","Nome do ficheiro: ");
-	scanf("%s",buffer);
+	pedirNomeFicheiro(buffer);
 	
 	if(strlen(buffer))
 	{
 		FILE *fp = fopen(buffer,"r");
-		pedirOpcoes(fp);
+		pedirOpcoes(fp, (char*) buffer);
 		fclose(fp);
 	}
 	
-	pedirOpcoes(stdin);
+	pedirOpcoes(stdin, (char*) buffer);
 	return EXIT_SUCCESS;
 }
 
