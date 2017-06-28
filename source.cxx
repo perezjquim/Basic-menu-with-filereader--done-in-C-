@@ -7,8 +7,10 @@
 #define READ "r"
 #define MIN_CHARACTERS_FILENAME 2
 
+/* Mostra o menu e as suas opções */
 void mostrarOpcoesMenu()
 {
+	// Display do menu e das suas opções
 	printf(STRING,"@@@MENU@@@\n");
 	printf(STRING,"1) <opcao1>\n");
 	printf(STRING,"2) <opcao2>\n");
@@ -16,8 +18,11 @@ void mostrarOpcoesMenu()
 	printf(STRING,"0) Sair\n");
 	printf(STRING,"@@@@@@@@@@\n\n");
 }
+
+/* Selecciona uma dada opção (e executa a sua respetiva ação) */
 void selecionarOpcaoMenu(int opcao)
 {
+	// Escolha da dada opção conforme o input
 	switch(opcao)
 	{
 		case 1: 
@@ -40,17 +45,24 @@ void selecionarOpcaoMenu(int opcao)
 			break;
 	}
 }
+
+/* Serve para pedir a opção a ser seleccionada (seja pelo ficheiro ou pelo utilizador) */
 void pedirOpcoes(FILE * stream, char * buffer)
 {
-	while(fgets(buffer,sizeof(buffer),stream))
+	// Enquanto poder ser escolhido uma opção 
+	// (infinitamente, no caso do utilizador; finitamente, no caso da leitura no ficheiro)
+	while(fgets(buffer,BUFFER_SIZE,stream))
 	{
-		selecionarOpcaoMenu(atoi(buffer));
+		selecionarOpcaoMenu(atoi(buffer)); // A dada opção é seleccionada
+		mostrarOpcoesMenu();
+		printf(STRING,"@@Escolha uma opcao@@\n");
 	}
 }
+
 void pedirOpcoesUtilizador(char * buffer)
 {
 	mostrarOpcoesMenu();
-	printf(STRING,"@@Escolha uma opcao@@\n");
+	printf(STRING,"@@Escolha uma opcao@@\n");	
 	fflush(stdin);
 	pedirOpcoes(stdin,buffer);
 }
@@ -58,32 +70,37 @@ void pedirNomeFicheiro(char * buffer)
 {
 	printf(STRING,"Nome do ficheiro: ");
 	fflush(stdin);
-	printf(STRING,fgets(buffer,sizeof(buffer),stdin));
+	fgets(buffer,BUFFER_SIZE,stdin);
+	strtok(buffer, "\n");
 }
 void lerFicheiro(char * buffer)
 {
 	pedirNomeFicheiro(buffer);
-	if(strlen(buffer) >= MIN_CHARACTERS_FILENAME)
+	
+	if(*buffer == '\n')
+		printf(STRING,"@@Leitura do ficheiro abortada.@@\n\n");
+	else
 	{
 		printf(STRING,"\n\n@@A carregar o ficheiro...@@\n");
 		FILE *fp = fopen(buffer,READ);
 		
 		if(!fp)
-		{	
 			printf(STRING,"@@Erro ao carregar o ficheiro.@@\n\n");
-			return;
+		else
+		{
+			pedirOpcoes(fp,buffer);
+			fclose(fp);
+			
+			printf(STRING,"@@Carregamento do ficheiro concluido.\n\n");
 		}
-		
-		pedirOpcoes(fp,buffer);
-		fclose(fp);
-		printf(STRING,"@@Carregamento do ficheiro concluido.\n\n");
 	}
 }
 int main()
 {
-	char buffer[BUFFER_SIZE];
+	char buffer[100];
 	
 	mostrarOpcoesMenu();
+	printf(STRING,"@@Escolha uma opcao@@\n");
 	
 	lerFicheiro(buffer);
 	
@@ -91,4 +108,3 @@ int main()
 	
 	return 0;
 }
-
