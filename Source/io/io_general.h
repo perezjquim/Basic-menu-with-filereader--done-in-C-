@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "options.h"
-#include "messages.h"
+#include "../etc/options.h"
+#include "../etc/messages.h"
 
 #ifndef true
 #define true 1
