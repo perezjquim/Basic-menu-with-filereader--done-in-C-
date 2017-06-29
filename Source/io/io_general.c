@@ -58,7 +58,7 @@ void executeOption(int option)
 }
 
 /* Serve para pedir a opção a ser seleccionada (seja pelo ficheiro ou pelo utilizador) */
-char * askOption(FILE * stream, char * buffer) { return fgets(buffer,BUFFER_SIZE,stream); }
+char * ask(FILE * stream, char * buffer) { return fgets(buffer,BUFFER_SIZE,stream); }
 
 /* Serve para pedir um conjunto (infinito) de opções por parte do utilizador */
 void askOptionsUser(char * buffer)
@@ -67,7 +67,7 @@ void askOptionsUser(char * buffer)
 	while(1)
 	{
 		showOptions();									// São mostradas as opções
-		askOption(stdin,buffer);						// É pedido (infinitamente) a escolha de uma opção
+		ask(stdin,buffer);						// É pedido (infinitamente) a escolha de uma opção
 		executeOption(convertToOption(buffer));			// É executada a dada ação
 	}
 }

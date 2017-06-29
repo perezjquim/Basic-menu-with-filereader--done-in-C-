@@ -3,7 +3,7 @@
 /* Serve para pedir um conjunto (infinito) de opções por parte do utilizador */
 void askOptionsFile(FILE * file, char * buffer)
 {
-	while(askOption(file,buffer))									// Percorre todas as ações indicadas no ficheiro (linha a linha)
+	while(ask(file,buffer))									// Percorre todas as ações indicadas no ficheiro (linha a linha)
 	{
 		executeOption(convertToOption(buffer));						// Executa a ação
 	}
@@ -14,7 +14,7 @@ char * askFileName(char * buffer)
 {
 	print(FILENAME_QUESTION);										 //
 	fflush(stdin);													 //
-	return (askOption(stdin,buffer))? (strtok(buffer, "\n")) : NULL; // É pedido o nome do ficheiro (e devolve NULL caso tenha sido uma resposta vazia)
+	return (ask(stdin,buffer))? (strtok(buffer, "\n")) : NULL; // É pedido o nome do ficheiro (e devolve NULL caso tenha sido uma resposta vazia)
 }
 void readFile(char * buffer)
 {

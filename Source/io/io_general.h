@@ -34,5 +34,5 @@ int convertToOption(char * buffer);
 void showOptions();
 void executeOption(int option);
 
-char * askOption(FILE * stream, char * buffer);
+char * ask(FILE * stream, char * buffer);
 void askOptionsUser(char * buffer);

@@ -1,3 +1,5 @@
+
+/* MENU */
 #ifndef MENU_BEGIN
 #define MENU_BEGIN "@@@@@@@@@@MENU@@@@@@@@@@\n"
 #endif
@@ -5,7 +7,9 @@
 #ifndef MENU_END
 #define MENU_END "@@@@@@@@@@@@@@@@@@@@@@@\n\n"
 #endif
+/**/
 
+/* OPTION */
 #ifndef CHOOSE_AN_OPTION
 #define CHOOSE_AN_OPTION "@@Escolha uma opcao@@\n"
 #endif
@@ -13,7 +17,9 @@
 #ifndef INVALID_OPTION
 #define INVALID_OPTION "Opcao invalida.\n"
 #endif
+/**/
 
+/* FILE */
 #ifndef FILENAME_QUESTION
 #define FILENAME_QUESTION "Nome do ficheiro: "
 #endif
@@ -33,3 +39,18 @@
 #ifndef FILE_LOADING_COMPLETE
 #define FILE_LOADING_COMPLETE "@@Carregamento do ficheiro concluido.\n\n"
 #endif
+/**/
+
+/* LOGIN */
+#ifndef USERNAME_QUESTION
+#define USERNAME_QUESTION "Nome de utilizador: "
+#endif
+
+#ifndef PASSWORD_QUESTION
+#define PASSWORD_QUESTION "Password: "
+#endif
+
+#ifndef LOGIN_FAILED
+#define LOGIN_FAILED "Nome de utilizador/password incorreto."
+#endif
+/**/
