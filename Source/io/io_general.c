@@ -1,9 +1,20 @@
 #include "io_general.h"
 
+/* Limpa o buffer */
+void clearBuffer(char * buffer)
+{
+	int i;
+	for(i=0;i<BUFFER_SIZE;i++)
+		buffer[i] = '\0';
+}
+
 /* Display de uma mensagem, label ou de uma opção */
 void print(char message[]) {  printf(STRING,message);  }
 void printLabel(int labelNumber,char labelName[]) { printf(LABEL,labelNumber,") ",labelName); }
 void printOption(char optionName[]) { printf(OPTION,optionName, " escolhida."); }
+
+/* Serve para pedir a opção a ser seleccionada (seja pelo ficheiro ou pelo utilizador) */
+char * ask(FILE * stream, char * buffer) { return fgets(buffer,BUFFER_SIZE,stream); }
 
 /* Converte uma string para o formato de uma opção (número) */
 int convertToOption(char * buffer) { return atoi(buffer); }
@@ -56,9 +67,6 @@ void executeOption(int option)
 			break;
 	}
 }
-
-/* Serve para pedir a opção a ser seleccionada (seja pelo ficheiro ou pelo utilizador) */
-char * ask(FILE * stream, char * buffer) { return fgets(buffer,BUFFER_SIZE,stream); }
 
 /* Serve para pedir um conjunto (infinito) de opções por parte do utilizador */
 void askOptionsUser(char * buffer)

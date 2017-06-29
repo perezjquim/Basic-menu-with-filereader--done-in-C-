@@ -22,8 +22,18 @@
 #endif
 
 #ifndef BUFFER_SIZE
-#define BUFFER_SIZE 100
+#define BUFFER_SIZE 500
 #endif
+
+#ifndef true
+#define true 1
+#endif
+
+#ifndef false
+#define false 0
+#endif
+
+void clearBuffer(char * buffer);
 
 void print(char message[]);
 void printLabel(int labelNumber,char labelName[]);

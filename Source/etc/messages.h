@@ -50,7 +50,19 @@
 #define PASSWORD_QUESTION "Password: "
 #endif
 
+#ifndef LOGIN_VERIFICATION_BEGIN
+#define LOGIN_VERIFICATION_BEGIN "\n\n@@O login sera agora verificado.@@\n"
+#endif
+
+#ifndef LOGIN_VERIFICATION_ERROR
+#define LOGIN_VERIFICATION_ERROR "@@Erro ao verificar o login.@@\n\n"
+#endif
+
+#ifndef LOGIN_SUCCESS
+#define LOGIN_SUCCESS "@@Login efetuado com sucesso.@@"
+#endif
+
 #ifndef LOGIN_FAILED
-#define LOGIN_FAILED "Nome de utilizador/password incorreto."
+#define LOGIN_FAILED "@@Nome de utilizador/password incorreto.@@"
 #endif
 /**/

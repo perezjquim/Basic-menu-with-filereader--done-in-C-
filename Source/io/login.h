@@ -9,13 +9,20 @@
 #define EMPTY_BUFFER ""
 #define HIDDEN_PASSWORD "*"
 
-void doLogin(char * buffer);
+#define LOGIN_FILE "login.txt"
+#define LOGIN_DATA_DELIM " "
 
-void checkLoginData(char * username, char * password);
+void doLogin(char * buffer);
 
 void deleteLastCharacter(char * buffer);
 void appendToPassword(char * buffer, char * buffer_key);
 
 void askCharacter(char * buffer);
-void askUsername(char * buffer, char * username);
+void askUsername(char * buffer);
 void askPassword(char * buffer, char * password);
+
+int isUsernameCorrect(char * buffer, char * username);
+int isPasswordCorrect(char * buffer, char * password);
+int isLoginDataCorrect(char * buffer, char * username, char * password);
+
+void checkLoginData(char * buffer, char * username, char * password);
