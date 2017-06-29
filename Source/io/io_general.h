@@ -5,14 +5,6 @@
 #include "../op/options.h"
 #include "../etc/messages.h"
 
-#ifndef true
-#define true 1
-#endif
-
-#ifndef false
-#define false 0
-#endif
-
 #ifndef STRING
 #define STRING "%s"
 #endif
@@ -37,7 +29,6 @@ int print(char message[]);
 int printLabel(int labelNumber,char labelName[]);
 int printOption(char optionName[]);
 
-int isBufferEmpty(char * buffer);
 int convertToOption(char * buffer);
 
 void showOptions();

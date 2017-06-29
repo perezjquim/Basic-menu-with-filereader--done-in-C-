@@ -5,9 +5,6 @@ int print(char message[]) {  return printf(STRING,message);  }
 int printLabel(int labelNumber,char labelName[]) { return printf(LABEL,labelNumber,") ",labelName); }
 int printOption(char optionName[]) { return printf(OPTION,optionName, " escolhida."); }
 
-/* Verifica se o buffer está vazio (se recebeu uma resposta vazia) */
-int isBufferEmpty(char * buffer) { return (*buffer == '\n'); }
-
 /* Converte uma string para o formato de uma opção (número) */
 int convertToOption(char * buffer) { return atoi(buffer); }
 
