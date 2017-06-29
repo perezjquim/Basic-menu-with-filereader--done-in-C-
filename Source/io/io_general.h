@@ -33,6 +33,8 @@
 #define false 0
 #endif
 
+void pause();
+
 void clearBuffer(char * buffer);
 
 void print(char message[]);

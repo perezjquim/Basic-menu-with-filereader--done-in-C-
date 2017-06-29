@@ -1,5 +1,8 @@
 #include "io_general.h"
 
+/* Pausa */
+void pause() { system("pause"); }
+
 /* Limpa o buffer */
 void clearBuffer(char * buffer)
 {
