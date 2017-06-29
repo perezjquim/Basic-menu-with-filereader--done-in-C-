@@ -23,7 +23,7 @@ int showOptions()
 	printLabel(0,"Exit");
 	print(MENU_END);
 	
-	return true;
+	return print(CHOOSE_AN_OPTION);
 }
 
 /* Selecciona uma dada opção (e executa a sua respetiva ação) */
@@ -68,7 +68,7 @@ void ask(FILE * stream, char * buffer)
 {
 	// Enquanto poder ser escolhido uma opção 
 	// (infinitamente, no caso do utilizador; finitamente, no caso da leitura no ficheiro)
-	while(fgets(buffer,BUFFER_SIZE,stream) && showOptions() && print(CHOOSE_AN_OPTION))
+	while(fgets(buffer,BUFFER_SIZE,stream) && showOptions())
 	{
 		executeOption(convertToOption(buffer)); 			// A dada opção é seleccionada
 	}
@@ -78,7 +78,6 @@ void ask(FILE * stream, char * buffer)
 void askUser(char * buffer)
 {
 	showOptions();
-	print(CHOOSE_AN_OPTION);
 	fflush(stdin);							// 
 	ask(stdin,buffer);						// É pedido (infinitamente) a escolha de uma opção
 }
