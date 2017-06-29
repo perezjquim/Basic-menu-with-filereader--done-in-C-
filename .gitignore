@@ -47,3 +47,4 @@ Temporary Items
 .apdisk
 *.o
 *.mdsp
+Release/main.o

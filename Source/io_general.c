@@ -1,6 +1,6 @@
 #include "io_general.h"
 
-/* Display de uma mensagem */
+/* Display de uma mensagem, label ou de uma opção */
 int print(char message[]) {  return printf(STRING,message);  }
 int printLabel(int labelNumber,char labelName[]) { return printf(LABEL,labelNumber,") ",labelName); }
 int printOption(char optionName[]) { return printf(OPTION,optionName, " escolhida."); }
@@ -69,8 +69,8 @@ void askOptionsUser(char * buffer)
 	fflush(stdin);			
 	while(1)
 	{
-		showOptions();
+		showOptions();									// São mostradas as opções
 		askOption(stdin,buffer);						// É pedido (infinitamente) a escolha de uma opção
-		executeOption(convertToOption(buffer));
+		executeOption(convertToOption(buffer));			// É executada a dada ação
 	}
 }

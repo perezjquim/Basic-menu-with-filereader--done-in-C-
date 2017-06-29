@@ -3,28 +3,28 @@
 /* Serve para pedir um conjunto (infinito) de opções por parte do utilizador */
 void askOptionsFile(FILE * file, char * buffer)
 {
-	while(askOption(file,buffer))
+	while(askOption(file,buffer))									// Percorre todas as ações indicadas no ficheiro (linha a linha)
 	{
-		executeOption(convertToOption(buffer));
+		executeOption(convertToOption(buffer));						// Executa a ação
 	}
 }
 
 /* Serve para pedir um conjunto de opções através do ficheiro */
-void askFileName(char * buffer)
+char * askFileName(char * buffer)
 {
-	print(FILENAME_QUESTION);						//
-	fflush(stdin);														//
-	askOption(stdin,buffer);
-	strtok(buffer, "\n");											//
+	print(FILENAME_QUESTION);										 //
+	fflush(stdin);													 //
+	return (askOption(stdin,buffer))? (strtok(buffer, "\n")) : NULL; // É pedido o nome do ficheiro (e devolve NULL caso tenha sido uma resposta vazia)
 }
 void readFile(char * buffer)
 {
-	askFileName(buffer);						// É pedido o nome do ficheiro a ser lido
-	
+	// É pedido o nome do ficheiro a ser lido
+	//
 	// Caso a resposta tenha sido vazia
 	// (caso não se pretenda ler um ficheiro)
-	if(isBufferEmpty(buffer))
-		print(FILE_LOADING_ABORT);
+	// Não é feito mais nada
+	if(!askFileName(buffer))
+		print(FILE_LOADING_ABORT);								// Mensagem de erro
 	
 	// Caso contrário
 	else
@@ -35,13 +35,13 @@ void readFile(char * buffer)
 		// Caso não exista esse ficheiro
 		// (ou outro tipo de erro ao abrir o ficheiro)
 		if(!fp)
-			print(FILE_LOADING_ERROR);
+			print(FILE_LOADING_ERROR);							// Mensagem de erro
 		
 		// Caso contrário,
 		// são lidas e executadas cada ação indicada no ficheiro
 		else
 		{
-			askOptionsFile(fp,buffer);
+			askOptionsFile(fp,buffer);							// São refeitas as ações indicadas no ficheiro (uma a uma)
 			fclose(fp);											// É fechado o ficheiro
 			
 			print(FILE_LOADING_COMPLETE);
