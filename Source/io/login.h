@@ -6,6 +6,8 @@
 #define BACKSPACE_KEY 8
 
 #define DELETE "\b \b"
+#define EMPTY_BUFFER ""
+#define HIDDEN_PASSWORD "*"
 
 void doLogin(char * buffer);
 
