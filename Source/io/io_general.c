@@ -1,9 +1,9 @@
 #include "io_general.h"
 
 /* Display de uma mensagem, label ou de uma opção */
-int print(char message[]) {  return printf(STRING,message);  }
-int printLabel(int labelNumber,char labelName[]) { return printf(LABEL,labelNumber,") ",labelName); }
-int printOption(char optionName[]) { return printf(OPTION,optionName, " escolhida."); }
+void print(char message[]) {  printf(STRING,message);  }
+void printLabel(int labelNumber,char labelName[]) { printf(LABEL,labelNumber,") ",labelName); }
+void printOption(char optionName[]) { printf(OPTION,optionName, " escolhida."); }
 
 /* Converte uma string para o formato de uma opção (número) */
 int convertToOption(char * buffer) { return atoi(buffer); }

@@ -25,9 +25,9 @@
 #define BUFFER_SIZE 100
 #endif
 
-int print(char message[]);
-int printLabel(int labelNumber,char labelName[]);
-int printOption(char optionName[]);
+void print(char message[]);
+void printLabel(int labelNumber,char labelName[]);
+void printOption(char optionName[]);
 
 int convertToOption(char * buffer);
 
