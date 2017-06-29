@@ -2,6 +2,17 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "options.h"
+#include "messages.h"
+
+#ifndef true
+#define true 1
+#endif
+
+#ifndef false
+#define false 0
+#endif
+
 #ifndef STRING
 #define STRING "%s"
 #endif
@@ -34,13 +45,16 @@
 #define LABEL3 "<opcao3>"
 #endif
 
-void print(char message[]);
-void printLabel(int labelNumber,char labelName[]);
+int print(char message[]);
+int printLabel(int labelNumber,char labelName[]);
+int printOption(char optionName[]);
+
 int isBufferEmpty(char * buffer);
 int convertToOption(char * buffer);
 
-void showOptions();
+int showOptions();
 void executeOption(int option);
+
 void ask(FILE * stream, char * buffer);
 void askUser(char * buffer);
 void askFileName(char * buffer);

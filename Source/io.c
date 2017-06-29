@@ -1,11 +1,10 @@
 #include "io.h"
-#include "options.h"
-#include "messages.h"
+
 
 /* Display de uma mensagem */
-void print(char message[]) {  printf(STRING,message);  }
-void printLabel(int labelNumber,char labelName[]) { printf(LABEL,labelNumber,") ",labelName); }
-void printOption(char optionName[]) { printf(OPTION,optionName, " escolhida."); }
+int print(char message[]) {  return printf(STRING,message);  }
+int printLabel(int labelNumber,char labelName[]) { return printf(LABEL,labelNumber,") ",labelName); }
+int printOption(char optionName[]) { return printf(OPTION,optionName, " escolhida."); }
 
 /* Verifica se o buffer está vazio (se recebeu uma resposta vazia) */
 int isBufferEmpty(char * buffer) { return (*buffer == '\n'); }
@@ -14,7 +13,7 @@ int isBufferEmpty(char * buffer) { return (*buffer == '\n'); }
 int convertToOption(char * buffer) { return atoi(buffer); }
 
 /* Mostra o menu e as suas opções */
-void showOptions()
+int showOptions()
 {
 	// Display do menu e das suas opções
 	print(MENU_BEGIN);
@@ -23,6 +22,8 @@ void showOptions()
 	printLabel(3,LABEL3);
 	printLabel(0,"Exit");
 	print(MENU_END);
+	
+	return true;
 }
 
 /* Selecciona uma dada opção (e executa a sua respetiva ação) */
@@ -67,27 +68,25 @@ void ask(FILE * stream, char * buffer)
 {
 	// Enquanto poder ser escolhido uma opção 
 	// (infinitamente, no caso do utilizador; finitamente, no caso da leitura no ficheiro)
-	while(fgets(buffer,BUFFER_SIZE,stream))
+	while(fgets(buffer,BUFFER_SIZE,stream) && showOptions() && print(CHOOSE_AN_OPTION))
 	{
 		executeOption(convertToOption(buffer)); 			// A dada opção é seleccionada
-		showOptions();										// São mostradas novamente as opções
-		print(CHOOSE_AN_OPTION);					// É exposta uma mensagem a pedir uma opção
 	}
 }
 
 /* Serve para pedir um conjunto (infinito) de opções por parte do utilizador */
 void askUser(char * buffer)
 {
-	showOptions();							// São mostradas as opções
-	print(CHOOSE_AN_OPTION);		// É exposta uma mensagem a pedir uma opção
-	fflush(stdin);									// 
+	showOptions();
+	print(CHOOSE_AN_OPTION);
+	fflush(stdin);							// 
 	ask(stdin,buffer);						// É pedido (infinitamente) a escolha de uma opção
 }
 
 /* Serve para pedir um conjunto de opções através do ficheiro */
 void askFileName(char * buffer)
 {
-	print(FILENAME_QUESTION);			//
+	print(FILENAME_QUESTION);						//
 	fflush(stdin);									//
 	fgets(buffer,BUFFER_SIZE,stdin);				// É pedido o nome do ficheiro a ser lido
 	strtok(buffer, "\n");							//
