@@ -55,14 +55,14 @@
 #endif
 
 #ifndef LOGIN_VERIFICATION_ERROR
-#define LOGIN_VERIFICATION_ERROR "@@Erro ao verificar o login.@@\n\n"
+#define LOGIN_VERIFICATION_ERROR "@@Erro ao verificar o login. O programa ira fechar.@@\n\n"
 #endif
 
 #ifndef LOGIN_SUCCESS
-#define LOGIN_SUCCESS "@@Login efetuado com sucesso.@@"
+#define LOGIN_SUCCESS "@@Login efetuado com sucesso.@@\n\n"
 #endif
 
 #ifndef LOGIN_FAILED
-#define LOGIN_FAILED "@@Nome de utilizador/password incorreto.@@"
+#define LOGIN_FAILED "@@Nome de utilizador/password incorreto. O programa ira fechar.@@\n\n"
 #endif
 /**/

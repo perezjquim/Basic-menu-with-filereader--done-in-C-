@@ -20,8 +20,11 @@ void doLogin(char * buffer)
 /* Apaga o último carater inserido (no caso de ser clicado 'backspace') */
 void deleteLastCharacter(char * buffer)
 {
-	print(DELETE);											// É apagado do display
-	if(strlen(buffer)) buffer[strlen(buffer)-1]= '\0';		// É apagado do buffer
+	if(strlen(buffer))
+	{		
+		print(DELETE);											// É apagado do display
+		buffer[strlen(buffer)-1]= '\0';							// É apagado do buffer
+	}
 }
 
 /* Acrescenta um dado caracter na password */
@@ -46,20 +49,25 @@ void askPassword(char * buffer, char * password)
 {
 	char buffer_key = 0;							// Buffer usado para representar a tecla premida (e o carater correspondente)
 	clearBuffer(buffer);
+	int cursor_position = 0;
 	
 	askCharacter(&buffer_key);						// É pedido um carater inicial
 	
 	// Enquanto não seja premido no ENTER
 	while(buffer_key != ENTER_KEY) 				
 	{ 
-		if(buffer_key == BACKSPACE_KEY) 			// Se for 'backspace'
-			deleteLastCharacter(buffer);			// Apaga o último carater
-		else 										// Se for outra tecla qualquer
+		if(buffer_key != BACKSPACE_KEY)				// Se for premida uma tecla diferente do BACKSPACE
+		{
 			appendToPassword(buffer,&buffer_key);	// Insere o carater na password
+			cursor_position++;
+		}
+		else										// Se for premido o BACKSPACE
+			deleteLastCharacter(buffer);			// Apaga o último carater
 		
 		askCharacter(&buffer_key);					// É pedido outro carater
 	}
-	strncpy(password,buffer,BUFFER_SIZE);
+	
+	strncpy(password,buffer,BUFFER_SIZE);			// É guardada a password
 }
 
 /* Compara username/password */
@@ -75,7 +83,6 @@ int isLoginDataCorrect(char * buffer, char * username, char * password)
 	char buffer_copy[BUFFER_SIZE];								
 	strncpy(buffer_copy,buffer,BUFFER_SIZE-1);
 	buffer_copy[BUFFER_SIZE-1] = '\0';
-	
 	
 	char * buffer_split;										// Buffer usado para isolar username/password
 	
@@ -108,7 +115,7 @@ void checkLoginData(char * buffer, char * username, char * password)
 			{
 				fclose(fp);										// É fechado o ficheiro
 				print(LOGIN_SUCCESS);							// Mensagem de sucesso
-				// (delay/pausa)
+				pause();
 				return;											// Sai desta função
 			}
 		}
@@ -116,7 +123,7 @@ void checkLoginData(char * buffer, char * username, char * password)
 		// Caso o utilizador tenha introduzido dados inválidos
 		fclose(fp);												// É fechado o ficheiro
 		print(LOGIN_FAILED);									// Fim da verificação do login
-		// (delay/pausa)
+		pause();
 		exit(0);												// Sai do programa
 	}
 }
