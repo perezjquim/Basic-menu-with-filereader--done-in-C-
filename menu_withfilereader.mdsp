@@ -80,9 +80,23 @@ resourceIncludeDirectory=
 extraResourceOptions=
 
 [Source]
-1=source.c
+1=Source\main.c
+2=Source\io\io_file.c
+3=Source\io\io_general.c
+4=Source\op\options.c
 [Header]
+1=Source\etc\messages.h
+2=Source\io\io_file.h
+3=Source\io\io_general.h
+4=Source\op\options.h
 [Resource]
 [Other]
 [History]
-source.c,1243
+Source\io_file.c,405
+Source\io_general.c,1398
+Source\io_general.h,348
+Source\io_file.h,142
+Source\messages.h,0
+Source\options.h,0
+Source\options.c,80
+Source\main.c,387
