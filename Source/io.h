@@ -7,7 +7,11 @@
 #endif
 
 #ifndef LABEL
-#define LABEL "%i %s %s %s"
+#define LABEL "%i %s %s \n"
+#endif
+
+#ifndef OPTION
+#define OPTION "%s %s \n \n"
 #endif
 
 #ifndef READ

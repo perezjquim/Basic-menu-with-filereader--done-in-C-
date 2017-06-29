@@ -1,9 +1,11 @@
 #include "io.h"
 #include "options.h"
+#include "messages.h"
 
 /* Display de uma mensagem */
 void print(char message[]) {  printf(STRING,message);  }
-void printLabel(int labelNumber,char labelName[]) { printf(LABEL,labelNumber,") ",labelName,"\n"); }
+void printLabel(int labelNumber,char labelName[]) { printf(LABEL,labelNumber,") ",labelName); }
+void printOption(char optionName[]) { printf(OPTION,optionName, " escolhida."); }
 
 /* Verifica se o buffer está vazio (se recebeu uma resposta vazia) */
 int isBufferEmpty(char * buffer) { return (*buffer == '\n'); }
@@ -15,12 +17,12 @@ int convertToOption(char * buffer) { return atoi(buffer); }
 void showOptions()
 {
 	// Display do menu e das suas opções
-	print("@@@@@@@@@@MENU@@@@@@@@@@\n");
+	print(MENU_BEGIN);
 	printLabel(1,LABEL1);
 	printLabel(2,LABEL2);
 	printLabel(3,LABEL3);
 	printLabel(0,"Exit");
-	print("@@@@@@@@@@@@@@@@@@@@@@@\n\n");
+	print(MENU_END);
 }
 
 /* Selecciona uma dada opção (e executa a sua respetiva ação) */
@@ -31,19 +33,19 @@ void executeOption(int option)
 	{
 		//
 		case 1: 
-			print("<opcao1> escolhida.\n");
+			printOption(LABEL1);
 			option1();
 			break;
 		
 		//
 		case 2:
-			print("<opcao2> escolhida.\n");
+			printOption(LABEL2);
 			option2();
 			break;
 		
 		//
 		case 3:
-			print("<opcao3> escolhida.\n");
+			printOption(LABEL3);
 			option3();
 			break;
 		
@@ -54,7 +56,7 @@ void executeOption(int option)
 			
 		// Opção inválida
 		default:
-			print("opcao invalida.\n");
+			print(INVALID_OPTION);
 			break;
 	}
 }
@@ -69,7 +71,7 @@ void ask(FILE * stream, char * buffer)
 	{
 		executeOption(convertToOption(buffer)); 			// A dada opção é seleccionada
 		showOptions();										// São mostradas novamente as opções
-		print("@@Escolha uma opcao@@\n");					// É exposta uma mensagem a pedir uma opção
+		print(CHOOSE_AN_OPTION);					// É exposta uma mensagem a pedir uma opção
 	}
 }
 
@@ -77,7 +79,7 @@ void ask(FILE * stream, char * buffer)
 void askUser(char * buffer)
 {
 	showOptions();							// São mostradas as opções
-	print("@@Escolha uma opcao@@\n");		// É exposta uma mensagem a pedir uma opção
+	print(CHOOSE_AN_OPTION);		// É exposta uma mensagem a pedir uma opção
 	fflush(stdin);									// 
 	ask(stdin,buffer);						// É pedido (infinitamente) a escolha de uma opção
 }
@@ -85,7 +87,7 @@ void askUser(char * buffer)
 /* Serve para pedir um conjunto de opções através do ficheiro */
 void askFileName(char * buffer)
 {
-	print("Nome do ficheiro: ");			//
+	print(FILENAME_QUESTION);			//
 	fflush(stdin);									//
 	fgets(buffer,BUFFER_SIZE,stdin);				// É pedido o nome do ficheiro a ser lido
 	strtok(buffer, "\n");							//
@@ -97,18 +99,18 @@ void readFile(char * buffer)
 	// Caso a resposta tenha sido vazia
 	// (caso não se pretenda ler um ficheiro)
 	if(isBufferEmpty(buffer))
-		print("@@Leitura do ficheiro abortada.@@\n\n");
+		print(FILE_LOADING_ABORT);
 	
 	// Caso contrário
 	else
 	{
-		print("\n\n@@A carregar o ficheiro...@@\n");
+		print(FILE_LOADING);
 		FILE *fp = fopen(buffer,READ);							// É aberto o ficheiro
 		
 		// Caso não exista esse ficheiro
 		// (ou outro tipo de erro ao abrir o ficheiro)
 		if(!fp)
-			print("@@Erro ao carregar o ficheiro.@@\n\n");
+			print(FILE_LOADING_ERROR);
 		
 		// Caso contrário,
 		// são lidas e executadas cada ação indicada no ficheiro
@@ -117,7 +119,7 @@ void readFile(char * buffer)
 			ask(fp,buffer);
 			fclose(fp);											// É fechado o ficheiro
 			
-			print("@@Carregamento do ficheiro concluido.\n\n");
+			print(FILE_LOADING_COMPLETE);
 		}
 	}
 }
