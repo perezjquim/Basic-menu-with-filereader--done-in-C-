@@ -5,7 +5,7 @@
 #endif
 
 #ifndef MENU_END
-#define MENU_END "@@@@@@@@@@@@@@@@@@@@@@@\n\n"
+#define MENU_END "@@@@@@@@@@@@@@@@@@@@@@@@\n\n"
 #endif
 /**/
 

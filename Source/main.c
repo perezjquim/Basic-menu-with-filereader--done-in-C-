@@ -10,7 +10,7 @@ int main()
 	doLogin(buffer);
 	
 	readFile(buffer);											// É lido o ficheiro (caso seja o pretendido)
-	askOptionsUser(buffer);										// São efetuadas as ações pedidas pelo utilizador
+	askOptionsUserInfinitely(buffer);										// São efetuadas as ações pedidas pelo utilizador
 	
 	return 0;													// Fim do programa
 }

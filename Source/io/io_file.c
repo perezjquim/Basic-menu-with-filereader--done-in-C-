@@ -1,21 +1,23 @@
 #include "io_file.h"
 
-/* Serve para pedir um conjunto (infinito) de opções por parte do utilizador */
+/* Lê e executa um dado conjunto de ações (indicadas no ficheiro) */
 void askOptionsFile(FILE * file, char * buffer)
 {
-	while(ask(file,buffer))									// Percorre todas as ações indicadas no ficheiro (linha a linha)
+	while(askFile(file,buffer))									// Percorre todas as ações indicadas no ficheiro (linha a linha)
 	{
-		executeOption(convertToOption(buffer));						// Executa a ação
+		executeOption(convertToOption(buffer));					// Executa a ação
 	}
 }
 
-/* Serve para pedir um conjunto de opções através do ficheiro */
+/* Pede o nome do ficheiro a ser lido */
 char * askFileName(char * buffer)
 {
-	print(FILENAME_QUESTION);										 //
-	fflush(stdin);													 //
-	return (ask(stdin,buffer))? (strtok(buffer, "\n")) : NULL; // É pedido o nome do ficheiro (e devolve NULL caso tenha sido uma resposta vazia)
+	print(FILENAME_QUESTION);									//
+	fflush(stdin);												//
+	return (askUser(buffer)) ? (strtok(buffer, "\n")) : NULL; 	// É pedido o nome do ficheiro (e devolve NULL caso tenha sido uma resposta vazia)
 }
+
+/* Leitura do ficheiro */
 void readFile(char * buffer)
 {
 	// É pedido o nome do ficheiro a ser lido

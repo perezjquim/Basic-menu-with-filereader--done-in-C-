@@ -35,39 +35,43 @@ void appendToPassword(char * buffer, char * buffer_key)
 }
 
 /* Pede um caracter ao utilizador */
-void askCharacter(char * buffer) { *buffer = getch(); }
+void askUserCharacter(char * buffer) { *buffer = getch(); }
 
 /* Pede o username ao utilizador */
 void askUsername(char * buffer) 
 { 	
-	ask(stdin,buffer); 
+	askUser(buffer);
 	strtok(buffer,"\n");
 }
+
+/* Deteta se foi premida uma determinada tecla (enter ou backspace, respetivamente) */
+int isEnterPressed(char buffer) { return buffer == ENTER_KEY; }
+int isBackspacePressed(char buffer) { return buffer == BACKSPACE_KEY; }
+
+/* Guarda a password */
+void storePassword(char * buffer, char * password) { strncpy(password,buffer,BUFFER_SIZE); }
 
 /* Pede a password ao utilizador */
 void askPassword(char * buffer, char * password)
 {
 	char buffer_key = 0;							// Buffer usado para representar a tecla premida (e o carater correspondente)
 	clearBuffer(buffer);
-	int cursor_position = 0;
 	
-	askCharacter(&buffer_key);						// É pedido um carater inicial
+	askUserCharacter(&buffer_key);					// É pedido um carater inicial
 	
 	// Enquanto não seja premido no ENTER
-	while(buffer_key != ENTER_KEY) 				
+	while(!isEnterPressed(buffer_key)) 				
 	{ 
-		if(buffer_key != BACKSPACE_KEY)				// Se for premida uma tecla diferente do BACKSPACE
-		{
-			appendToPassword(buffer,&buffer_key);	// Insere o carater na password
-			cursor_position++;
-		}
-		else										// Se for premido o BACKSPACE
+		if(isBackspacePressed(buffer_key))			// Se for premido o BACKSPACE
 			deleteLastCharacter(buffer);			// Apaga o último carater
 		
-		askCharacter(&buffer_key);					// É pedido outro carater
+		else										// Se for premida uma tecla diferente do BACKSPACE
+			appendToPassword(buffer,&buffer_key);	// Insere o carater na password
+		
+		askUserCharacter(&buffer_key);				// É pedido outro carater
 	}
 	
-	strncpy(password,buffer,BUFFER_SIZE);			// É guardada a password
+	storePassword(buffer,password);					// É guardada a password
 }
 
 /* Compara username/password */
@@ -81,8 +85,7 @@ int isLoginDataCorrect(char * buffer, char * username, char * password)
 	
 	// Buffer cópia com a linha toda do ficheiro
 	char buffer_copy[BUFFER_SIZE];								
-	strncpy(buffer_copy,buffer,BUFFER_SIZE-1);
-	buffer_copy[BUFFER_SIZE-1] = '\0';
+	copyBuffer(buffer_copy,buffer);
 	
 	char * buffer_split;										// Buffer usado para isolar username/password
 	

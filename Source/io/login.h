@@ -17,12 +17,17 @@ void doLogin(char * buffer);
 void deleteLastCharacter(char * buffer);
 void appendToPassword(char * buffer, char * buffer_key);
 
-void askCharacter(char * buffer);
+void askUserCharacter(char * buffer);
 void askUsername(char * buffer);
 void askPassword(char * buffer, char * password);
 
 int isUsernameCorrect(char * buffer, char * username);
 int isPasswordCorrect(char * buffer, char * password);
 int isLoginDataCorrect(char * buffer, char * username, char * password);
+
+int isEnterPressed(char buffer);
+int isBackspacePressed(char buffer);
+
+void storePassword(char * buffer, char * password);
 
 void checkLoginData(char * buffer, char * username, char * password);
