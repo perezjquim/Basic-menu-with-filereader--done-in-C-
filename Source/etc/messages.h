@@ -1,15 +1,15 @@
 
 /* MENU */
 #ifndef MENU_BEGIN
-#define MENU_BEGIN "@@@@@@@@@@MENU@@@@@@@@@@\n"
+#define MENU_BEGIN "@@@@@@@@@@MENU@@@@@@@@@@"
 #endif
 
 #ifndef MENU_END
-#define MENU_END "@@@@@@@@@@@@@@@@@@@@@@@@\n\n"
+#define MENU_END "@@@@@@@@@@@@@@@@@@@@@@@@"
 #endif
 
 #ifndef ENTER_TO_CONTINUE
-#define ENTER_TO_CONTINUE "Prima ENTER para continuar.\n"
+#define ENTER_TO_CONTINUE "Prima ENTER para continuar."
 #endif
 
 #ifndef ENTER_TO_ABORT
@@ -17,17 +17,17 @@
 #endif
 
 #ifndef EXIT_KEYS
-#define EXIT_KEYS "[0/ENTER para sair]\n"
+#define EXIT_KEYS "[0/ENTER para sair]"
 #endif
 /**/
 
 /* OPTION */
 #ifndef CHOOSE_AN_OPTION
-#define CHOOSE_AN_OPTION "@@Escolha uma opcao@@\n"
+#define CHOOSE_AN_OPTION "@@Escolha uma opcao@@"
 #endif
 
 #ifndef INVALID_OPTION
-#define INVALID_OPTION "Opcao invalida.\n"
+#define INVALID_OPTION "Opcao invalida."
 #endif
 /**/
 
@@ -37,19 +37,19 @@
 #endif
 
 #ifndef FILE_LOADING
-#define FILE_LOADING "\n\n@@A carregar o ficheiro...@@\n"
+#define FILE_LOADING "\n@@A carregar o ficheiro...@@"
 #endif
 
 #ifndef FILE_LOADING_ABORT
-#define FILE_LOADING_ABORT "@@Leitura do ficheiro abortada.@@\n\n"
+#define FILE_LOADING_ABORT "@@Leitura do ficheiro abortada.@@"
 #endif
 
 #ifndef FILE_LOADING_ERROR
-#define FILE_LOADING_ERROR "@@Erro ao carregar o ficheiro.@@\n\n"
+#define FILE_LOADING_ERROR "@@Erro ao carregar o ficheiro.@@"
 #endif
 
 #ifndef FILE_LOADING_COMPLETE
-#define FILE_LOADING_COMPLETE "@@Carregamento do ficheiro concluido.\n\n"
+#define FILE_LOADING_COMPLETE "@@Carregamento do ficheiro concluido."
 #endif
 /**/
 
@@ -63,18 +63,18 @@
 #endif
 
 #ifndef LOGIN_VERIFICATION_BEGIN
-#define LOGIN_VERIFICATION_BEGIN "\n\n@@O login sera agora verificado.@@\n"
+#define LOGIN_VERIFICATION_BEGIN "\n@@O login sera agora verificado.@@"
 #endif
 
 #ifndef LOGIN_VERIFICATION_ERROR
-#define LOGIN_VERIFICATION_ERROR "@@Erro ao verificar o login. O programa ira fechar.@@\n\n"
+#define LOGIN_VERIFICATION_ERROR "\n@@Erro ao verificar o login. O programa ira fechar.@@"
 #endif
 
 #ifndef LOGIN_SUCCESS
-#define LOGIN_SUCCESS "@@Login efetuado com sucesso.@@\n\n"
+#define LOGIN_SUCCESS "@@Login efetuado com sucesso.@@"
 #endif
 
 #ifndef LOGIN_FAILED
-#define LOGIN_FAILED "@@Nome de utilizador/password incorreto. O programa ira fechar.@@\n\n"
+#define LOGIN_FAILED "@@Nome de utilizador/password incorreto. O programa ira fechar.@@"
 #endif
 /**/

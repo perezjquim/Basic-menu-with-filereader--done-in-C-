@@ -21,7 +21,7 @@ void doLogin(char * buffer)
 void askUsername(char * buffer) 
 { 	
 	askUser(buffer);
-	strtok(buffer,"\n");
+	strtok(buffer,ENDLINE);
 }
 
 /* Pede a password ao utilizador */
@@ -50,7 +50,7 @@ void askPassword(char * buffer, char * password)
 /* Verifica o login */
 void checkLoginData(char * buffer, char * username, char * password)
 {
-	print(LOGIN_VERIFICATION_BEGIN);							// Início da verificação do login
+	println(LOGIN_VERIFICATION_BEGIN);							// Início da verificação do login
 	
 	FILE * fp = fopen(LOGIN_FILE,READ);							// É aberto o ficheiro
 	
@@ -62,13 +62,13 @@ void checkLoginData(char * buffer, char * username, char * password)
 	// Prossegue com o login
 	else
 	{
-		while(askFile(fp,buffer))									// Percorre o ficheiro
+		while(askFile(fp,buffer))								// Percorre o ficheiro
 		{
-			strtok(buffer,"\n");
+			strtok(buffer,ENDLINE);
 			if(isLoginDataCorrect(buffer,username,password)) 	// Se bater certo os dados introduzidos pelo utilizador
 			{
 				fclose(fp);										// É fechado o ficheiro
-				print(LOGIN_SUCCESS);							// Mensagem de sucesso
+				println(LOGIN_SUCCESS);							// Mensagem de sucesso
 				pause();
 				return;											// Sai desta função
 			}
@@ -76,7 +76,7 @@ void checkLoginData(char * buffer, char * username, char * password)
 		
 		// Caso o utilizador tenha introduzido dados inválidos
 		fclose(fp);												// É fechado o ficheiro
-		print(LOGIN_FAILED);									// Fim da verificação do login
+		println(LOGIN_FAILED);									// Fim da verificação do login
 		pause();
 		exit(0);												// Sai do programa
 	}

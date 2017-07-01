@@ -6,13 +6,13 @@ void showOptions()
 	clearScreen();
 	
 	// Display do menu e das suas opções
-	print(MENU_BEGIN);
+	println(MENU_BEGIN);
 	printLabel(1,LABEL1);
 	printLabel(2,LABEL2);
 	printLabel(3,LABEL3);
-	print(MENU_END);
-	print(CHOOSE_AN_OPTION);
-	print(EXIT_KEYS);
+	println(MENU_END);
+	println(CHOOSE_AN_OPTION);
+	println(EXIT_KEYS);
 }
 
 /* Selecciona uma dada opção (e executa a sua respetiva ação) */
@@ -46,7 +46,7 @@ void executeOption(int option)
 			
 		// Opção inválida
 		default:
-			print(INVALID_OPTION);
+			println(INVALID_OPTION);
 			break;
 	}
 }
@@ -72,6 +72,7 @@ int convertToOption(char * buffer) { return atoi(buffer); }
 
 /* Display de uma mensagem, label ou de uma opção */
 void print(char message[]) {  printf(STRING,message);  }
+void println(char message[]) { printf(STRING_LINE,message); }
 void printLabel(int labelNumber,char labelName[]) { printf(LABEL,labelNumber,labelName); }
 void printOption(char optionName[]) { printf(OPTION,optionName); }
 
@@ -79,7 +80,7 @@ void printOption(char optionName[]) { printf(OPTION,optionName); }
 void clearScreen() { system("cls||clear"); }
 
 /* Pausa */
-void pause() { print(ENTER_TO_CONTINUE); getchar(); }
+void pause() { println(ENTER_TO_CONTINUE); getchar(); }
 
 /* Limpa o buffer */
 void clearBuffer(char * buffer)

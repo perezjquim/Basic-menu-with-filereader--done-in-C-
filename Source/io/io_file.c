@@ -9,18 +9,18 @@ void readFile(char * buffer)
 	// (caso não se pretenda ler um ficheiro)
 	// Não é feito mais nada
 	if(!askFileName(buffer))
-		print(FILE_LOADING_ABORT);								// Mensagem de erro
+		println(FILE_LOADING_ABORT);							// Mensagem de erro
 	
 	// Caso contrário
 	else
 	{
-		print(FILE_LOADING);
+		println(FILE_LOADING);
 		FILE * fp = fopen(buffer,READ);							// É aberto o ficheiro
 		
 		// Caso não exista esse ficheiro
 		// (ou outro tipo de erro ao abrir o ficheiro)
 		if(!fp)
-			print(FILE_LOADING_ERROR);							// Mensagem de erro
+			println(FILE_LOADING_ERROR);						// Mensagem de erro
 		
 		// Caso contrário,
 		// são lidas e executadas cada ação indicada no ficheiro
@@ -29,7 +29,7 @@ void readFile(char * buffer)
 			askOptionsFile(fp,buffer);							// São refeitas as ações indicadas no ficheiro (uma a uma)
 			fclose(fp);											// É fechado o ficheiro
 			
-			print(FILE_LOADING_COMPLETE);
+			println(FILE_LOADING_COMPLETE);
 		}
 	}
 }
@@ -46,9 +46,9 @@ void askOptionsFile(FILE * file, char * buffer)
 /* Pede o nome do ficheiro a ser lido */
 char * askFileName(char * buffer)
 {
-	print(FILENAME_QUESTION);
-	print(ENTER_TO_ABORT);
+	println(FILENAME_QUESTION);
+	println(ENTER_TO_ABORT);
 	fflush(stdin);												
-	return (askUser(buffer)) ? (strtok(buffer, "\n")) : NULL; 	// É pedido o nome do ficheiro (e devolve NULL caso tenha sido uma resposta vazia)
+	return (askUser(buffer)) ? (strtok(buffer, ENDLINE)) : NULL; 	// É pedido o nome do ficheiro (e devolve NULL caso tenha sido uma resposta vazia)
 }
 

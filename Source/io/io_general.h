@@ -9,6 +9,10 @@
 #define STRING "%s"
 #endif
 
+#ifndef STRING_LINE
+#define STRING_LINE "%s\n"
+#endif
+
 #ifndef LABEL
 #define LABEL "%i) %s\n"
 #endif
@@ -25,18 +29,16 @@
 #define BUFFER_SIZE 500
 #endif
 
+#ifndef ENDLINE
+#define ENDLINE "\n"
+#endif
+
 #ifndef true
 #define true 1
 #endif
 
 #ifndef false
 #define false 0
-#endif
-
-#if defined POSIX
-  #define CLEARSCR system ( "clear" )
-#elif defined MSDOS || defined WIN32
-  #define CLEARSCR system ( "cls" )
 #endif
 
 void showOptions();
@@ -50,6 +52,7 @@ void askOptionsUserInfinitely(char * buffer);
 int convertToOption(char * buffer);
 
 void print(char message[]);
+void println(char message[]);
 void printLabel(int labelNumber,char labelName[]);
 void printOption(char optionName[]);
 
