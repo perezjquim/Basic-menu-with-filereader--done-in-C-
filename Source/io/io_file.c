@@ -1,22 +1,5 @@
 #include "io_file.h"
 
-/* Lê e executa um dado conjunto de ações (indicadas no ficheiro) */
-void askOptionsFile(FILE * file, char * buffer)
-{
-	while(askFile(file,buffer))									// Percorre todas as ações indicadas no ficheiro (linha a linha)
-	{
-		executeOption(convertToOption(buffer));					// Executa a ação
-	}
-}
-
-/* Pede o nome do ficheiro a ser lido */
-char * askFileName(char * buffer)
-{
-	print(FILENAME_QUESTION);									//
-	fflush(stdin);												//
-	return (askUser(buffer)) ? (strtok(buffer, "\n")) : NULL; 	// É pedido o nome do ficheiro (e devolve NULL caso tenha sido uma resposta vazia)
-}
-
 /* Leitura do ficheiro */
 void readFile(char * buffer)
 {
@@ -50,3 +33,22 @@ void readFile(char * buffer)
 		}
 	}
 }
+
+/* Lê e executa um dado conjunto de ações (indicadas no ficheiro) */
+void askOptionsFile(FILE * file, char * buffer)
+{
+	while(askFile(file,buffer))									// Percorre todas as ações indicadas no ficheiro (linha a linha)
+	{
+		executeOption(convertToOption(buffer));					// Executa a ação
+	}
+}
+
+/* Pede o nome do ficheiro a ser lido */
+char * askFileName(char * buffer)
+{
+	print(FILENAME_QUESTION);
+	print(ENTER_TO_ABORT);
+	fflush(stdin);												
+	return (askUser(buffer)) ? (strtok(buffer, "\n")) : NULL; 	// É pedido o nome do ficheiro (e devolve NULL caso tenha sido uma resposta vazia)
+}
+

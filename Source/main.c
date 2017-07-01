@@ -9,6 +9,8 @@ int main()
 	
 	doLogin(buffer);
 	
+	clearScreen();
+	
 	readFile(buffer);											// É lido o ficheiro (caso seja o pretendido)
 	askOptionsUserInfinitely(buffer);										// São efetuadas as ações pedidas pelo utilizador
 	

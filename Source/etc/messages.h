@@ -7,6 +7,18 @@
 #ifndef MENU_END
 #define MENU_END "@@@@@@@@@@@@@@@@@@@@@@@@\n\n"
 #endif
+
+#ifndef ENTER_TO_CONTINUE
+#define ENTER_TO_CONTINUE "Prima ENTER para continuar.\n"
+#endif
+
+#ifndef ENTER_TO_ABORT
+#define ENTER_TO_ABORT "[ENTER para abortar]"
+#endif
+
+#ifndef EXIT_KEYS
+#define EXIT_KEYS "[0/ENTER para sair]\n"
+#endif
 /**/
 
 /* OPTION */

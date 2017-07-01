@@ -94,13 +94,3 @@ extraResourceOptions=
 [Resource]
 [Other]
 [History]
-Source\io\io_general.c,75
-Source\io\io_file.c,967
-Source\op\options.c,0
-Source\io\io_file.h,113
-Source\op\options.h,0
-Source\io\io_general.h,407
-Source\main.c,218
-Source\io\login.h,236
-Source\io\login.c,3597
-Source\etc\messages.h,1519
