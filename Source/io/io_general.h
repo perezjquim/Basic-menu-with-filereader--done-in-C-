@@ -5,41 +5,15 @@
 #include "../op/options.h"
 #include "../etc/messages.h"
 
-#ifndef STRING
 #define STRING "%s"
-#endif
-
-#ifndef STRING_LINE
 #define STRING_LINE "%s\n"
-#endif
-
-#ifndef LABEL
 #define LABEL "%i) %s\n"
-#endif
-
-#ifndef OPTION
 #define OPTION "%s escolhida.\n\n"
-#endif
-
-#ifndef READ
 #define READ "r"
-#endif
-
-#ifndef BUFFER_SIZE
 #define BUFFER_SIZE 500
-#endif
-
-#ifndef ENDLINE
 #define ENDLINE "\n"
-#endif
-
-#ifndef true
 #define true 1
-#endif
-
-#ifndef false
 #define false 0
-#endif
 
 void showOptions();
 void executeOption(int option);
